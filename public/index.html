@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VENTURE 26 — Hackathon Timer | EVOKE Project Expo</title>
+    <meta name="description" content="Live countdown timer for VENTURE 26, a 16-hour hackathon presented by EVOKE Project Expo. Sustain. Shield. Accelerate.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Background: poster image + overlay -->
+    <div class="bg">
+        <img src="poster.jpg" alt="" class="bg-poster" aria-hidden="true">
+        <div class="bg-overlay"></div>
+        <div class="bg-grain"></div>
+    </div>
+
+    <!-- Main layout -->
+    <main>
+
+        <!-- Top branding -->
+        <header class="branding">
+            <p class="branding-org">EVOKE <span>PROJECT EXPO</span></p>
+            <div class="branding-rule"></div>
+            <p class="branding-presents">P R E S E N T S</p>
+        </header>
+
+        <!-- Event title — each letter is a span for staggered jiggle -->
+        <section class="event-title">
+            <h1 class="title-main" id="title-main">
+                <span class="char white">V</span><span class="char white">E</span><span class="char white">N</span><span class="char white">T</span><span class="char white">U</span><span class="char white">R</span><span class="char white">E</span><span class="char spacer"></span><span class="char gold">2</span><span class="char gold">6</span>
+            </h1>
+            <p class="title-sub">A 16HR HACKATHON</p>
+        </section>
+
+        <!-- Timer -->
+        <section class="timer" id="timer">
+            <div class="timer-digit-group">
+                <div class="timer-digit" id="digit-h1">0</div>
+                <div class="timer-digit" id="digit-h2">0</div>
+                <span class="timer-label">HRS</span>
+            </div>
+            <div class="timer-sep" aria-hidden="true">:</div>
+            <div class="timer-digit-group">
+                <div class="timer-digit" id="digit-m1">0</div>
+                <div class="timer-digit" id="digit-m2">0</div>
+                <span class="timer-label">MIN</span>
+            </div>
+            <div class="timer-sep" aria-hidden="true">:</div>
+            <div class="timer-digit-group">
+                <div class="timer-digit" id="digit-s1">0</div>
+                <div class="timer-digit" id="digit-s2">0</div>
+                <span class="timer-label">SEC</span>
+            </div>
+        </section>
+
+        <!-- Tagline -->
+        <footer class="tagline">
+            <span>SUSTAIN</span>
+            <i></i>
+            <span>SHIELD</span>
+            <i></i>
+            <span>ACCELERATE</span>
+        </footer>
+
+    </main>
+
+    <!-- Fullscreen toggle -->
+    <button class="fab fab-fs" id="fab-fs" aria-label="Toggle fullscreen">
+        <svg id="fs-icon-expand" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+        <svg id="fs-icon-shrink" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M4 14h6v6"/><path d="M20 10h-6V4"/><path d="M14 10l7-7"/><path d="M3 21l7-7"/></svg>
+    </button>
+
+    <!-- Settings toggle -->
+    <button class="fab" id="fab" aria-label="Open timer settings">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/></svg>
+    </button>
+
+    <!-- Settings panel -->
+    <div class="panel-backdrop" id="panel-backdrop"></div>
+    <aside class="panel" id="panel">
+        <h2 class="panel-title">Timer Settings</h2>
+
+        <!-- Step 1: Admin code gate -->
+        <div id="auth-gate">
+            <label class="field-label">Enter admin code to modify timer</label>
+            <input type="password" id="admin-code" class="inp" placeholder="Enter code…" autocomplete="off">
+            <p class="auth-error" id="auth-error"></p>
+            <button class="btn-gold" id="btn-unlock" style="margin-top:16px;width:100%">Unlock</button>
+        </div>
+
+        <!-- Step 2: Timer controls (hidden until unlocked) -->
+        <div id="timer-controls" style="display:none">
+            <p class="auth-success">✓ Admin access granted</p>
+
+            <!-- Mode tabs -->
+            <div class="tabs" role="tablist">
+                <button class="tab active" data-mode="duration" role="tab" aria-selected="true">Duration</button>
+                <button class="tab" data-mode="target" role="tab" aria-selected="false">Target Time</button>
+            </div>
+
+            <!-- Duration mode -->
+            <div class="tab-pane active" id="pane-duration">
+                <label class="field-label">Set countdown duration</label>
+                <div class="duration-inputs">
+                    <div class="dur-col">
+                        <input type="number" id="dur-h" min="0" max="99" value="16" class="dur-input">
+                        <span class="dur-unit">hours</span>
+                    </div>
+                    <span class="dur-colon">:</span>
+                    <div class="dur-col">
+                        <input type="number" id="dur-m" min="0" max="59" value="0" class="dur-input">
+                        <span class="dur-unit">min</span>
+                    </div>
+                    <span class="dur-colon">:</span>
+                    <div class="dur-col">
+                        <input type="number" id="dur-s" min="0" max="59" value="0" class="dur-input">
+                        <span class="dur-unit">sec</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Target mode -->
+            <div class="tab-pane" id="pane-target">
+                <label class="field-label" for="inp-date">End date &amp; time</label>
+                <div class="target-inputs">
+                    <input type="date" id="inp-date" class="inp">
+                    <input type="time" id="inp-time" step="1" class="inp">
+                </div>
+            </div>
+
+            <div class="panel-actions">
+                <button class="btn-ghost" id="btn-cancel">Cancel</button>
+                <button class="btn-gold" id="btn-start">Update Timer</button>
+            </div>
+
+            <p class="update-status" id="update-status"></p>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>

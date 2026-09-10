@@ -186,14 +186,12 @@
             return;
         }
 
-        // Quick client-side check by attempting a dummy request
-        // The real verification happens server-side on actual update
+        // Quick server-side verification of the code
         try {
-            // Verify by sending a test — we'll use the current endTime so nothing changes
-            const res = await fetch('/api/timer', {
+            const res = await fetch('/api/verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ endTime: endTime || (Date.now() + 3600000), code })
+                body: JSON.stringify({ code })
             });
             if (!res.ok) {
                 const data = await res.json();

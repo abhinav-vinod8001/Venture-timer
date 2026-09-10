@@ -54,6 +54,15 @@ app.post('/api/timer', (req, res) => {
     res.json({ success: true, endTime: timer.endTime });
 });
 
+// POST — verify admin code
+app.post('/api/verify', (req, res) => {
+    const { code } = req.body;
+    if (!code || code !== ADMIN_CODE) {
+        return res.status(403).json({ error: 'Invalid admin code' });
+    }
+    res.json({ success: true });
+});
+
 // SPA fallback — serve index.html for any non-API route
 app.get('*', (_req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

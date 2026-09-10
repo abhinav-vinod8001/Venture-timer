@@ -557,7 +557,27 @@ main {
 }
 
 /* ---------- Finished state ---------- */
-.timer.finished .timer-digit {
+.times-up {
+    display: none;
+    font-family: var(--font-display);
+    font-size: clamp(64px, 13vw, 240px);
+    line-height: 1;
+    text-align: center;
+    background: linear-gradient(180deg, var(--white) 10%, var(--gold-light) 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,.3));
+    font-variant-numeric: tabular-nums;
+}
+
+.timer.finished .timer-digit-group,
+.timer.finished .timer-sep {
+    display: none;
+}
+
+.timer.finished .times-up {
+    display: block;
     animation: finishedPulse 1.2s ease-in-out infinite alternate;
 }
 
